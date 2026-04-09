@@ -8,6 +8,21 @@ ENV/
 .env
 .env.local
 
+# AI / Agent Metadata (Internal)
+.agent/
+.gemini/
+
+# Note: .planning/ is intentionally tracked to preserve roadmap/requirements
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Scratch / Temporary
+scratch/
+tmp/
+
 # OS specific
 .DS_Store
 Thumbs.db
