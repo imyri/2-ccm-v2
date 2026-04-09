@@ -1,12 +1,18 @@
+import sys
 import os
 import json
-import logging
+import importlib
 from datetime import datetime
 
-class SignalAggregator:
-    def __init__(self, discovery_root="01-Discovery"):
-        self.discovery_root = discovery_root
-        self.trends_dir = os.path.join(discovery_root, "Trends")
+# Adjust path to import core_utils
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+core_utils = importlib.import_module("modules.00S_core_utils")
+CCMModule = core_utils.CCMModule
+
+class SignalAggregator(CCMModule):
+    def __init__(self):
+        super().__init__("SignalAggregator")
+        self.trends_dir = os.path.join(self.db_root, "Signals")
         
     def aggregate_daily_signals(self):
         """Merge all signals from today into a single summary."""
@@ -14,6 +20,7 @@ class SignalAggregator:
         all_signals = []
         
         if not os.path.exists(self.trends_dir):
+            self.logger.warning("No signals found directory.")
             return "No signals found."
             
         for filename in os.listdir(self.trends_dir):
@@ -28,9 +35,8 @@ class SignalAggregator:
             # Sort by view count if available
             all_signals.sort(key=lambda x: x.get('view_count', 0) or 0, reverse=True)
             
-            summary_file = os.path.join(self.trends_dir, f"DAILY_SUMMARY_{today}.json")
-            with open(summary_file, 'w', encoding='utf-8') as f:
-                json.dump(all_signals, f, indent=2, ensure_ascii=False)
+            filename = f"DAILY_SUMMARY_{today}.json"
+            summary_file = self.save_output("Signals", filename, all_signals)
             return summary_file
         
         return "No signals to aggregate for today."

@@ -10,7 +10,7 @@ CCMModule = core_utils.CCMModule
 
 class MotionMuse(CCMModule):
     def __init__(self):
-        super().__init__("MotionMuse", "03-Production")
+        super().__init__("MotionMuse")
 
     def generate_shot_list(self, script_path):
         """Transform a script into a structured visual shot list."""

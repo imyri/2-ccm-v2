@@ -10,13 +10,13 @@ load_dotenv()
 class CCMModule:
     """Base class for all CCM deterministic modules (M)."""
     
-    def __init__(self, name, context_room):
+    def __init__(self, name):
         self.name = name
-        self.context_room = context_room
+        self.db_root = "Db"
         self.setup_logging()
         
     def setup_logging(self):
-        log_dir = os.path.join(self.context_room, "Logs")
+        log_dir = os.path.join(self.db_root, "Logs")
         os.makedirs(log_dir, exist_ok=True)
         log_file = os.path.join(log_dir, f"{self.name}_{datetime.now().strftime('%Y%m%d')}.log")
         
@@ -31,8 +31,8 @@ class CCMModule:
         self.logger = logging.getLogger(self.name)
 
     def save_output(self, folder, filename, data):
-        """Standard method to save output (JSON or Markdown) to a context room."""
-        target_dir = os.path.join(self.context_room, folder)
+        """Standard method to save output (JSON or Markdown) to the Db vault."""
+        target_dir = os.path.join(self.db_root, folder)
         os.makedirs(target_dir, exist_ok=True)
         filepath = os.path.join(target_dir, filename)
         

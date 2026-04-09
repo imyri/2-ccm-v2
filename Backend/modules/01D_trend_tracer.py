@@ -12,7 +12,7 @@ CCMModule = core_utils.CCMModule
 
 class TrendTracer(CCMModule):
     def __init__(self):
-        super().__init__("TrendTracer", "01-Discovery")
+        super().__init__("TrendTracer")
 
     def fetch_youtube_trends(self, keyword, max_results=10):
         """Fetch trending YouTube signals using yt-dlp."""
@@ -45,7 +45,7 @@ class TrendTracer(CCMModule):
                         })
                     
                     filename = f"signals_{keyword.replace(' ', '_').lower()}_{datetime.now().strftime('%Y%m%d_%H%M')}.json"
-                    filepath = self.save_output("Trends", filename, signals)
+                    filepath = self.save_output("Signals", filename, signals)
                     self.logger.info(f"Successfully captured {len(signals)} signals.")
                     return filepath
                 else:

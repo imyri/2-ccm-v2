@@ -12,7 +12,7 @@ CCMModule = core_utils.CCMModule
 
 class AirtableSync(CCMModule):
     def __init__(self):
-        super().__init__("AirtableSync", "01-Discovery")
+        super().__init__("AirtableSync")
         self.pat = os.getenv("AIRTABLE_PAT")
         self.base_id = os.getenv("AIRTABLE_BASE_ID")
         self.table_name = os.getenv("AIRTABLE_TABLE_NAME")
