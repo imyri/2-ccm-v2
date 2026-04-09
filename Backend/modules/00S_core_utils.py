@@ -50,31 +50,42 @@ class CCMModule:
         return filepath
 
     def call_gemini(self, prompt, system_instruction="You are a helpful assistant.", retries=3, backoff=5):
-        """Call Gemini API with retries and exponential backoff."""
+        """Call Gemini API with retries and exponential backoff using the new google-genai SDK."""
         api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:
             self.logger.error("GEMINI_API_KEY not found in .env")
             return "Error: No API Key."
             
-        import google.generativeai as genai
+        from google import genai
         import time
         
-        genai.configure(api_key=api_key)
-        # Switching to gemini-flash-latest for better free-tier quotas and stability
-        model = genai.GenerativeModel('gemini-flash-latest', system_instruction=system_instruction)
+        # Initialize the new Client
+        client = genai.Client(api_key=api_key)
+        
+        # Using gemini-2.0-flash for state-of-the-art performance and quotas
+        model_id = 'gemini-2.0-flash'
         
         for attempt in range(retries):
             try:
-                response = model.generate_content(prompt)
+                # New Client-based generation
+                response = client.models.generate_content(
+                    model=model_id,
+                    contents=prompt,
+                    config=genai.types.GenerateContentConfig(
+                        system_instruction=system_instruction
+                    )
+                )
                 return response.text
             except Exception as e:
-                if "429" in str(e) or "ResourceExhausted" in str(e):
+                # Handle quota and general errors
+                err_str = str(e)
+                if "429" in err_str or "ResourceExhausted" in err_str:
                     wait_time = backoff * (2 ** attempt)
                     self.logger.warning(f"Quota exceeded (429). Retrying in {wait_time}s... (Attempt {attempt+1}/{retries})")
                     time.sleep(wait_time)
                 else:
-                    self.logger.error(f"Gemini API Error: {str(e)}")
-                    return f"Error: {str(e)}"
+                    self.logger.error(f"Gemini API Error: {err_str}")
+                    return f"Error: {err_str}"
         
         return "Error: Max retries exceeded for Gemini API call."
 

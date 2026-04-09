@@ -23,67 +23,121 @@
 
     <main>
         <section id="hero">
-            <div class="hero-content">
+            <div class="hero-content glass">
+                <div class="badge">V2.0 LIVE</div>
                 <h1 class="gradient-text">Automate Your Authority.</h1>
-                <p>The first end-to-end "Content Creation Machine" that discovers viral trends, scripts narratives, and fabricates multimedia — at scale.</p>
+                <p>The first end-to-end <strong>Content Creation Machine</strong> that discovers viral trends, scripts narratives, and fabricates multimedia — at scale.</p>
                 <div class="hero-btns">
                     <a href="#signals" class="btn-primary">View Live Signals</a>
-                    <a href="#" class="btn-secondary">Get Early Access</a>
+                    <a href="#anatomy" class="btn-secondary">The Machine</a>
                 </div>
             </div>
             <div class="hero-image">
                 <img src="assets/hero.png" alt="CCM AI Content Automation">
+                <div class="glow-effect"></div>
             </div>
         </section>
 
         <section id="anatomy">
             <div class="section-header">
-                <h2>The Machine Anatomy</h2>
+                <h2 class="gradient-text">Machine Anatomy</h2>
+                <p>The neural pathway of content fabrication.</p>
                 <div class="underline"></div>
             </div>
-            <div class="rooms-grid">
-                <div class="room-card glass">
-                    <div class="room-num">01</div>
-                    <h3>Discovery</h3>
-                    <p>TrendTracer scans YouTube and X for viral signals, aggregating high-potential content triggers.</p>
-                </div>
-                <div class="room-card glass">
-                    <div class="room-num">02</div>
-                    <h3>Narrative</h3>
-                    <p>ScriptSmith translates raw research into high-retention scripts using custom AI personas.</p>
-                </div>
-                <div class="room-card glass">
-                    <div class="room-num">03</div>
-                    <h3>Production</h3>
-                    <p>MotionMuse orchestrates media assembly, voice synthesis, and scene fabrication.</p>
-                </div>
-                <div class="room-card glass">
-                    <div class="room-num">04</div>
-                    <h3>Monetization</h3>
-                    <p>NexusNode automatically rotates affiliate links and sales funnels based on topic relevance.</p>
+            
+            <div class="machine-flow">
+                <div class="flow-container">
+                    <!-- Room 1: Discovery -->
+                    <div class="node-room glass" id="room-discovery">
+                        <div class="node-header">
+                            <span class="room-num">M1</span>
+                            <h3>Discovery</h3>
+                        </div>
+                        <div class="node-body">
+                            <p>TrendTracer scans viral triggers across YouTube & X.</p>
+                            <div class="status-indicator online">System Online</div>
+                        </div>
+                    </div>
+
+                    <div class="flow-connector">
+                        <div class="pulse-line"></div>
+                    </div>
+
+                    <!-- Room 2: Research -->
+                    <div class="node-room glass" id="room-research">
+                        <div class="node-header">
+                            <span class="room-num">M2</span>
+                            <h3>Intelligence</h3>
+                        </div>
+                        <div class="node-body">
+                            <p>SpecSpy performs deep technical extraction via Gemini 1.5.</p>
+                            <div class="status-indicator processing">Deep Scan...</div>
+                        </div>
+                    </div>
+
+                    <div class="flow-connector">
+                        <div class="pulse-line"></div>
+                    </div>
+
+                    <!-- Room 3: Narrative -->
+                    <div class="node-room glass" id="room-narrative">
+                        <div class="node-header">
+                            <span class="room-num">M3</span>
+                            <h3>Fabrication</h3>
+                        </div>
+                        <div class="node-body">
+                            <p>ScriptSmith & MotionMuse forge narratives & shot lists.</p>
+                            <div class="status-indicator online">Gen-AI Ready</div>
+                        </div>
+                    </div>
+
+                     <div class="flow-connector">
+                        <div class="pulse-line"></div>
+                    </div>
+
+                    <!-- Room 4: Sync -->
+                    <div class="node-room glass" id="room-sync">
+                        <div class="node-header">
+                            <span class="room-num">M4</span>
+                            <h3>Ecosystem Sync</h3>
+                        </div>
+                        <div class="node-body">
+                            <p>Live propagation to Airtable & Platform Hubs.</p>
+                            <div class="status-indicator sync">Airtable Linked</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="signals" class="glass-section">
-            <div class="signals-container">
+        <section id="signals">
+            <div class="signals-container glass">
                 <div class="signals-info">
-                    <h2>Real-Time Signals</h2>
-                    <p>Our machine is currently syncing viral triggers to our centralized database. You can track the raw flow of intelligence here.</p>
-                    <a href="https://airtable.com/appD2V2JmUnK88gYj/tblWfF8gB8o6R4v2D" target="_blank" class="btn-primary">Open Signal Hub (Airtable)</a>
-                </div>
-                <div class="signals-preview glass">
-                    <div class="preview-header">
-                        <div class="dot red"></div>
-                        <div class="dot yellow"></div>
-                        <div class="dot green"></div>
-                        <span>syncing_signals...</span>
+                    <h2 class="gradient-text">Signal Intelligence</h2>
+                    <p>Machine-learning models are currently auditing global trends. The feed below shows live propagation from our Discovery rooms to your Ecosystem Sync.</p>
+                    <div class="signals-actions">
+                        <a href="https://airtable.com/appD2V2JmUnK88gYj/tblWfF8gB8o6R4v2D" target="_blank" class="btn-primary">Airtable Database</a>
+                        <a href="#hero" class="btn-secondary">Back to Top</a>
                     </div>
-                    <div class="preview-content">
-                        <code>Fetching niche: "Generative AI"...</code>
-                        <code>Found 12 high-velocity triggers...</code>
-                        <code>Syncing to Airtable Table: "Content Signals"...</code>
-                        <code>[SUCCESS] Uploaded batch of 10 records.</code>
+                </div>
+                <div class="terminal-dashboard">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="terminal-title">CCM-CORE-OS // v2.0.4</div>
+                    </div>
+                    <div class="terminal-body" id="terminal-feed">
+                        <div class="log-line"><span class="cmd">></span> INITIALIZING_TREND_TRACER...</div>
+                        <div class="log-line"><span class="cmd">></span> SEARCHING_NICHE: [AI_AUTOMATION]</div>
+                        <div class="log-line success"><span class="cmd">></span> [SUCCESS] 5_NEW_SIGNALS_IDENTIFIED</div>
+                        <div class="log-line"><span class="cmd">></span> FORWARDING_TO_SPEC_SPY...</div>
+                        <div class="log-line processing"><span class="cmd">></span> PERFORMING_DEEP_RESEARCH (GEMINI-1.5-FLASH)...</div>
+                        <div class="log-line success"><span class="cmd">></span> [COMPLETE] REPORT_GENERATED: report_ai_2026.md</div>
+                        <div class="log-line"><span class="cmd">></span> SYNCING_TO_AIRTABLE_BASE: appTlYvH...</div>
+                        <div class="log-line success"><span class="cmd">></span> [SYNC_LOCKED] 100%_DATA_PROPAGATED</div>
                     </div>
                 </div>
             </div>
@@ -93,5 +147,6 @@
     <footer>
         <p>&copy; 2026 Content Creation Machine V2. Powered by Antigravity AI.</p>
     </footer>
+    <script src="main.js"></script>
 </body>
 </html>
