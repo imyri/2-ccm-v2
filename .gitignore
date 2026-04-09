@@ -1,0 +1,27 @@
+# Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Sensitive Data
+.env
+.env.local
+
+# AI / Agent Metadata
+.agent/
+.gemini/
+.planning/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Scratch / Temporary
+scratch/
+tmp/
+
+# OS specific
+.DS_Store
+Thumbs.db

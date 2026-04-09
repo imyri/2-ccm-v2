@@ -1,0 +1,20 @@
+[
+  {
+    "scene_id": 1,
+    "visual_prompt": "A high-end cinematic close-up of a computer terminal screen in a dim room. The screen shows lines of code and the word 'CLAUDE' in glowing blue text. Sleek dark mode tech aesthetic, high contrast, 8k resolution.",
+    "text_overlay": "DELETE YOUR BUFFER ACCOUNT",
+    "audio_cue": "Stop using manual social media dashboards. They're killing your context window."
+  },
+  {
+    "scene_id": 2,
+    "visual_prompt": "A minimalist overhead shot of a messy desk with multiple monitors showing open browser tabs for Instagram, LinkedIn, and X. The lighting is cold and blue, symbolizing digital overwhelm.",
+    "text_overlay": "STOP THE CLICKING",
+    "audio_cue": "Most creators spend 5 hours a week just clicking 'Post'. It's low-leverage work."
+  },
+  {
+    "scene_id": 3,
+    "visual_prompt": "A futuristic 3D render of a digital bridge connecting a terminal screen to various social media logos (X, LinkedIn). Glowing data particles moving across the bridge. Dark mode, cyan and deep blue accents.",
+    "text_overlay": "AUTOMATE THE LOOP",
+    "audio_cue": "But with the Claude Code CLI and MCP, you can automate the whole loop from your terminal."
+  }
+]

@@ -1,0 +1,11 @@
+yt-dlp
+requests
+anthropic
+stripe
+playwright
+pandas
+beautifulsoup4
+scrapy
+python-dotenv
+google-generativeai
+pyairtable
