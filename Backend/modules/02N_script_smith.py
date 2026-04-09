@@ -10,7 +10,7 @@ CCMModule = core_utils.CCMModule
 class ScriptSmith(CCMModule):
     def __init__(self):
         super().__init__("ScriptSmith")
-        self.instructions_dir = os.path.join("Backend", "instructions")
+        self.instructions_dir = os.path.join(self.backend_root, "instructions")
 
     def load_instruction(self, filename):
         path = os.path.join(self.instructions_dir, filename)

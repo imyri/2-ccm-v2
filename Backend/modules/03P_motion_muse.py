@@ -49,10 +49,10 @@ class MotionMuse(CCMModule):
         try:
             # Clean possible markdown formatting
             clean_json = shot_list_raw.strip()
-            if clean_json.startswith("```json"):
-                clean_json = clean_json.replace("```json", "").replace("```", "").strip()
-            elif clean_json.startswith("```"):
-                clean_json = clean_json.replace("```", "").strip()
+            if "```json" in clean_json:
+                clean_json = clean_json.split("```json")[1].split("```")[0].strip()
+            elif "```" in clean_json:
+                clean_json = clean_json.split("```")[1].split("```")[0].strip()
                 
             shot_data = json.loads(clean_json)
             

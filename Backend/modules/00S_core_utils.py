@@ -12,7 +12,10 @@ class CCMModule:
     
     def __init__(self, name):
         self.name = name
-        self.db_root = "Db"
+        # Find project root (where .env usually lives)
+        self.project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        self.db_root = os.path.join(self.project_root, "Db")
+        self.backend_root = os.path.join(self.project_root, "Backend")
         self.setup_logging()
         
     def setup_logging(self):
@@ -46,23 +49,34 @@ class CCMModule:
         self.logger.info(f"Output saved to {filepath}")
         return filepath
 
-    def call_gemini(self, prompt, system_instruction="You are a helpful assistant."):
-        """Call Gemini API using the free-tier key."""
+    def call_gemini(self, prompt, system_instruction="You are a helpful assistant.", retries=3, backoff=5):
+        """Call Gemini API with retries and exponential backoff."""
         api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:
             self.logger.error("GEMINI_API_KEY not found in .env")
             return "Error: No API Key."
             
         import google.generativeai as genai
-        genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-1.5-flash', system_instruction=system_instruction)
+        import time
         
-        try:
-            response = model.generate_content(prompt)
-            return response.text
-        except Exception as e:
-            self.logger.error(f"Gemini API Error: {str(e)}")
-            return f"Error: {str(e)}"
+        genai.configure(api_key=api_key)
+        # Switching to gemini-flash-latest for better free-tier quotas and stability
+        model = genai.GenerativeModel('gemini-flash-latest', system_instruction=system_instruction)
+        
+        for attempt in range(retries):
+            try:
+                response = model.generate_content(prompt)
+                return response.text
+            except Exception as e:
+                if "429" in str(e) or "ResourceExhausted" in str(e):
+                    wait_time = backoff * (2 ** attempt)
+                    self.logger.warning(f"Quota exceeded (429). Retrying in {wait_time}s... (Attempt {attempt+1}/{retries})")
+                    time.sleep(wait_time)
+                else:
+                    self.logger.error(f"Gemini API Error: {str(e)}")
+                    return f"Error: {str(e)}"
+        
+        return "Error: Max retries exceeded for Gemini API call."
 
 # Example usage pattern:
 # if __name__ == "__main__":
