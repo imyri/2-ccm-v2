@@ -1,0 +1,8 @@
+- [/] Airtable Integration (DISC-03)
+    - [ ] Update `requirements.txt` with `pyairtable`
+    - [ ] Update `.env` with Airtable placeholders
+    - [ ] Create `00-System/modules/01D_airtable_sync.py`
+    - [ ] Implement duplicate checking logic using `Signal ID`
+- [ ] Verification
+    - [ ] Mock test run with existing `signals_...json` data
+    - [ ] Verify field mapping matches Airtable schema requirements
