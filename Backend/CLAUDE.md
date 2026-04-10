@@ -1,26 +1,31 @@
 # CCM Global Agent Guidelines (CLAUDE.md)
 
-This document defines the behavioral identity and operational rules for the AI Agents within the CCM ecosystem.
+This document defines the behavioral identity and operational rules for the AI Agents within the CCM V2.0 ecosystem.
 
 ## Primary Directive
-Transform the local file system into an autonomous production house while strictly adhering to the **I.A.M. Architecture**.
+Transform the local file system into an autonomous production house while strictly adhering to the **Full-Stack V2 Architecture (Backend, Db, Frontend)**.
 
 ## Universal Rules
-1. **Strict Filename Structure**: Every file (scripts, instructions, logs) must follow the `XXY_filename.ext` pattern where `XX` is the room number and `Y` is the room initial (S, D, N, P, M, A, F). 
-   - *Example*: `01D_trend_tracer.py` (A discovery module), `02N_context_writer.md` (Narrative instructions).
-2. **Free Resources Only**: Every script, API call, and external dependency must utilize free tiers or open-source resources. Avoid paid credits/subscriptions unless explicitly overridden by the user.
-3. **Context Isolation**: Always respect the Context Room boundaries. When working in a room (e.g., `01-Discovery`), only read relevant instructions and data from that room.
-4. **Deterministic Execution**: Agents (A) must never perform complex technical tasks directly if a Module (M) exists. Always delegate technical execution to Python modules.
-5. **Markdown Interface**: All reports, ideas, and configurations must be written in Markdown to remain Obsidian-compatible and human-readable.
+1. **Strict Filename Structure**: Every module/script must follow the `XXY_filename.ext` pattern (e.g., `01D_`, `02N_`).
+2. **Exponential Backoff**: Every module interfacing with an LLM API (Gemini/Anthropic) **MUST** implement exponential backoff retry logic.
+3. **n8n Connectivity**: When `HITL_ENABLED` is true, modules must utilize the `Backend/modules/00S_n8n_handler.py` dispatcher for approvals.
+4. **Context Isolation**: Modules must only read from/write to their designated `Db/` subdirectories (Signals, Research, Scripts, Media).
+5. **Markdown Interface**: All reports, scripts, and logs must be written in clean Markdown.
 
-## Interaction Model (I.A.M.)
-- **Instructions (I)**: Read `CCM_MAP.md` and local `CONTEXT.md` before taking action.
-- **Agents (A)**: Use reasoning to plan steps based on Instructions.
-- **Modules (M)**: Call modules via slash commands (e.g., `/trendtracer`).
+## Interaction Model (I.A.M. V2)
+- **Instructions (I)**: Check `Backend/instructions/` for SOPs and Context before taking action.
+- **Agents (A)**: Reason and plan based on instructions. Use the **Planning Mode** for complex migration or logic changes.
+- **Modules (M)**: Use existing scripts in `Backend/modules/`. Do not reinvent core utilities.
 
 ## Coding Standards
-- **Python**: Use `venv` for all dependencies. Follow PEP 8.
-- **Formatting**: Use clean, descriptive titles and headers in all Markdown artifacts.
+- **Backend (Python)**: PEP 8, FastAPI for orchestrator. Use standard try-except blocks with logging.
+- **Frontend**: Vanilla HTML/CSS/JS. Use glassmorphic design tokens defined in `Frontend/style.css`.
+- **Database**: All persistence happens in the `Db/` vault. Never store generated data in the root or code folders.
+
+## Environment Variables
+- `GEMINI_API_KEY`: Required for pipeline generation.
+- `HITL_ENABLED`: Toggle for n8n/Human-in-the-loop logic.
+- `N8N_HITL_WEBHOOK_URL`: Target URL for n8n approval requests.
 
 ---
-*Last updated: 2026-04-09*
+*Last updated: 2026-04-10 (CCM V2.0 Stable Final)*

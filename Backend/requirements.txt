@@ -7,5 +7,9 @@ pandas
 beautifulsoup4
 scrapy
 python-dotenv
-google-generativeai
+google-genai
 pyairtable
+fastapi
+uvicorn
+python-multipart
+pydantic

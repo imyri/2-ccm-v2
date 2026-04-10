@@ -3,150 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCM | AI Content Automation Hub</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>CCM Control Center | Premium Autonomous Machine</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <nav class="glass">
-            <div class="logo">CCM<span>V2</span></div>
-            <div class="nav-links">
-                <a href="#anatomy">The Machine</a>
-                <a href="#signals">Signal Hub</a>
-                <a href="https://github.com/imyri/2-ccm-v2" target="_blank" class="btn-secondary">GitHub</a>
+    <!-- Premium Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <div class="logo-orb"></div>
+                <h1>CCM V2.0</h1>
             </div>
-        </nav>
-    </header>
+        </div>
 
+        <div class="nav-group">
+            <div class="nav-label">Core Control</div>
+            <div alt="Dashboard" class="nav-item active" onclick="switchView('dashboard')">
+                <i class="fas fa-layer-group"></i>
+                Command Tower
+            </div>
+        </div>
+
+        <div class="nav-group">
+            <div class="nav-label">Step-By-Step Workflow</div>
+            <div alt="Step 1: Discovery" class="nav-item" onclick="switchView('discovery')">
+                <i class="fas fa-satellite-dish"></i>
+                1. Discovery Phase
+            </div>
+            <div alt="Step 2: Narrative" class="nav-item" onclick="switchView('narrative')">
+                <i class="fas fa-feather-pointed"></i>
+                2. Narrative Engine
+            </div>
+            <div alt="Step 3: Production" class="nav-item" onclick="switchView('production')">
+                <i class="fas fa-clapperboard"></i>
+                3. Production Hub
+            </div>
+        </div>
+
+        <div class="nav-group" style="margin-top: auto;">
+            <div class="nav-label">Infrastructure</div>
+            <div class="nav-item">
+                <i class="fas fa-server"></i>
+                Model: Gemini 2.0
+            </div>
+            <div class="nav-item" onclick="toggleSettings()">
+                <i class="fas fa-sliders"></i>
+                Pipeline Config
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Workspace -->
     <main>
-        <section id="hero">
-            <div class="hero-content glass">
-                <div class="badge">V2.0 LIVE</div>
-                <h1 class="gradient-text">Automate Your Authority.</h1>
-                <p>The first end-to-end <strong>Content Creation Machine</strong> that discovers viral trends, scripts narratives, and fabricates multimedia — at scale.</p>
-                <div class="hero-btns">
-                    <a href="#signals" class="btn-primary">View Live Signals</a>
-                    <a href="#anatomy" class="btn-secondary">The Machine</a>
+        <!-- View: Dashboard -->
+        <div id="dashboard" class="view-content active">
+            <div class="top-bar">
+                <div class="page-title">
+                    <h2>Command Tower</h2>
+                    <p>Orchestrating autonomous content generation workflows.</p>
                 </div>
+                <div id="globalStatus" class="status-pill">Ready</div>
             </div>
-            <div class="hero-image">
-                <img src="assets/hero.png" alt="CCM AI Content Automation">
-                <div class="glow-effect"></div>
-            </div>
-        </section>
 
-        <section id="anatomy">
-            <div class="section-header">
-                <h2 class="gradient-text">Machine Anatomy</h2>
-                <p>The neural pathway of content fabrication.</p>
-                <div class="underline"></div>
-            </div>
-            
-            <div class="machine-flow">
-                <div class="flow-container">
-                    <!-- Room 1: Discovery -->
-                    <div class="node-room glass" id="room-discovery">
-                        <div class="node-header">
-                            <span class="room-num">M1</span>
-                            <h3>Discovery</h3>
+            <div class="control-tower">
+                <div class="automate-panel">
+                    <div class="automate-info">
+                        <h3>One-Click Pipeline</h3>
+                        <p style="color: var(--text-dim);">Enter your niche below to trigger the entire autonomous loop.</p>
+                    </div>
+                    <div class="niche-container">
+                        <input type="text" id="nicheInput" class="niche-input" placeholder="e.g. AI Trends, Crypto News..." value="AI Automation">
+                    </div>
+                    <button id="automateBtn" class="btn-premium">
+                        <i class="fas fa-bolt-lightning"></i> START PIPELINE
+                    </button>
+                </div>
+
+                <!-- Process Stepper -->
+                <div class="process-stepper">
+                    <div class="step-node active" id="step-node-1">1 <div class="step-label">Discovery</div></div>
+                    <div class="step-node" id="step-node-2">2 <div class="step-label">Narrative</div></div>
+                    <div class="step-node" id="step-node-3">3 <div class="step-label">Production</div></div>
+                    <div class="step-node" id="step-node-4">4 <div class="step-label">Complete</div></div>
+                </div>
+
+                <div class="grid-cols-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title"><i class="fas fa-wave-square"></i> Real-time Logic Log</div>
                         </div>
-                        <div class="node-body">
-                            <p>TrendTracer scans viral triggers across YouTube & X.</p>
-                            <div class="status-indicator online">System Online</div>
+                        <div id="terminal" class="terminal-window">
+                            <!-- Logs injected here -->
+                            <div class="log-entry"><span>[INIT]</span> Control Center Online.</div>
                         </div>
                     </div>
-
-                    <div class="flow-connector">
-                        <div class="pulse-line"></div>
-                    </div>
-
-                    <!-- Room 2: Research -->
-                    <div class="node-room glass" id="room-research">
-                        <div class="node-header">
-                            <span class="room-num">M2</span>
-                            <h3>Intelligence</h3>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title"><i class="fas fa-chart-pie"></i> Pipeline Vitals</div>
                         </div>
-                        <div class="node-body">
-                            <p>SpecSpy performs deep technical extraction via Gemini 1.5.</p>
-                            <div class="status-indicator processing">Deep Scan...</div>
+                        <div class="hero-stats">
+                            <div class="stat-box">
+                                <div id="progressPercent" class="stat-val">0%</div>
+                                <div class="stat-label">Completion</div>
+                            </div>
+                            <div class="stat-box">
+                                <div id="discoveryCount" class="stat-val">0</div>
+                                <div class="stat-label">Signals</div>
+                            </div>
+                            <div class="stat-box">
+                                <div id="scriptsCount" class="stat-val">0</div>
+                                <div class="stat-label">Scripts</div>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="flow-connector">
-                        <div class="pulse-line"></div>
-                    </div>
-
-                    <!-- Room 3: Narrative -->
-                    <div class="node-room glass" id="room-narrative">
-                        <div class="node-header">
-                            <span class="room-num">M3</span>
-                            <h3>Fabrication</h3>
+                        <div class="progress-track" style="margin-top: 2rem;">
+                            <div id="progressBar" class="progress-fill"></div>
                         </div>
-                        <div class="node-body">
-                            <p>ScriptSmith & MotionMuse forge narratives & shot lists.</p>
-                            <div class="status-indicator online">Gen-AI Ready</div>
-                        </div>
-                    </div>
-
-                     <div class="flow-connector">
-                        <div class="pulse-line"></div>
-                    </div>
-
-                    <!-- Room 4: Sync -->
-                    <div class="node-room glass" id="room-sync">
-                        <div class="node-header">
-                            <span class="room-num">M4</span>
-                            <h3>Ecosystem Sync</h3>
-                        </div>
-                        <div class="node-body">
-                            <p>Live propagation to Airtable & Platform Hubs.</p>
-                            <div class="status-indicator sync">Airtable Linked</div>
-                        </div>
+                        <p id="currentStepText" style="text-align: center; color: var(--accent-primary); font-weight: 600; margin-top: 1rem;">System Idle</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="signals">
-            <div class="signals-container glass">
-                <div class="signals-info">
-                    <h2 class="gradient-text">Signal Intelligence</h2>
-                    <p>Machine-learning models are currently auditing global trends. The feed below shows live propagation from our Discovery rooms to your Ecosystem Sync.</p>
-                    <div class="signals-actions">
-                        <a href="https://airtable.com/appD2V2JmUnK88gYj/tblWfF8gB8o6R4v2D" target="_blank" class="btn-primary">Airtable Database</a>
-                        <a href="#hero" class="btn-secondary">Back to Top</a>
-                    </div>
-                </div>
-                <div class="terminal-dashboard">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <div class="terminal-title">CCM-CORE-OS // v2.0.4</div>
-                    </div>
-                    <div class="terminal-body" id="terminal-feed">
-                        <div class="log-line"><span class="cmd">></span> INITIALIZING_TREND_TRACER...</div>
-                        <div class="log-line"><span class="cmd">></span> SEARCHING_NICHE: [AI_AUTOMATION]</div>
-                        <div class="log-line success"><span class="cmd">></span> [SUCCESS] 5_NEW_SIGNALS_IDENTIFIED</div>
-                        <div class="log-line"><span class="cmd">></span> FORWARDING_TO_SPEC_SPY...</div>
-                        <div class="log-line processing"><span class="cmd">></span> PERFORMING_DEEP_RESEARCH (GEMINI-1.5-FLASH)...</div>
-                        <div class="log-line success"><span class="cmd">></span> [COMPLETE] REPORT_GENERATED: report_ai_2026.md</div>
-                        <div class="log-line"><span class="cmd">></span> SYNCING_TO_AIRTABLE_BASE: appTlYvH...</div>
-                        <div class="log-line success"><span class="cmd">></span> [SYNC_LOCKED] 100%_DATA_PROPAGATED</div>
-                    </div>
+        <!-- View: Step 1 Discovery -->
+        <div id="discovery" class="view-content">
+            <div class="top-bar">
+                <div class="page-title">
+                    <h2>Step 1: Discovery Phase</h2>
+                    <p>Monitoring global signals and identifying viral trends.</p>
                 </div>
             </div>
-        </section>
+
+            <section class="sub-phase-section">
+                <div class="sub-phase-header">
+                    <div class="sub-phase-num">1.1</div>
+                    <div class="sub-phase-title">Trend Discovery</div>
+                </div>
+                <div id="grid-trends" class="asset-grid">
+                    <!-- Trends items -->
+                </div>
+            </section>
+
+            <section class="sub-phase-section">
+                <div class="sub-phase-header">
+                    <div class="sub-phase-num">1.2</div>
+                    <div class="sub-phase-title">Signal Aggregation</div>
+                </div>
+                <div id="grid-signals" class="asset-grid">
+                    <!-- Aggregation items -->
+                </div>
+            </section>
+
+            <section class="sub-phase-section">
+                <div class="sub-phase-header">
+                    <div class="sub-phase-num">1.3</div>
+                    <div class="sub-phase-title">Database Sync</div>
+                </div>
+                <div id="grid-sync" class="asset-grid">
+                    <!-- Sync items -->
+                </div>
+            </section>
+        </div>
+
+        <!-- View: Step 2 Narrative -->
+        <div id="narrative" class="view-content">
+            <div class="top-bar">
+                <div class="page-title">
+                    <h2>Step 2: Narrative Engine</h2>
+                    <p>Refining raw signals into high-impact viral storytelling.</p>
+                </div>
+            </div>
+
+            <section class="sub-phase-section">
+                <div class="sub-phase-header">
+                    <div class="sub-phase-num">2.1</div>
+                    <div class="sub-phase-title">Deep Research Reports</div>
+                </div>
+                <div id="grid-research" class="asset-grid">
+                    <!-- Research items -->
+                </div>
+            </section>
+
+            <section class="sub-phase-section">
+                <div class="sub-phase-header">
+                    <div class="sub-phase-num">2.2</div>
+                    <div class="sub-phase-title">Generated Scripts</div>
+                </div>
+                <div id="grid-scripts" class="asset-grid">
+                    <!-- Script items -->
+                </div>
+            </section>
+        </div>
+
+        <!-- View: Step 3 Production -->
+        <div id="production" class="view-content">
+            <div class="top-bar">
+                <div class="page-title">
+                    <h2>Step 3: Production Hub</h2>
+                    <p>Executing visual mapping and multimedia generation.</p>
+                </div>
+            </div>
+
+            <section class="sub-phase-section">
+                <div class="sub-phase-header">
+                    <div class="sub-phase-num">3.1</div>
+                    <div class="sub-phase-title">Multimedia Assets</div>
+                </div>
+                <div id="grid-assets" class="asset-grid">
+                    <!-- Assets items -->
+                </div>
+            </section>
+
+            <section class="sub-phase-section">
+                <div class="sub-phase-header">
+                    <div class="sub-phase-num">3.2</div>
+                    <div class="sub-phase-title">Directorial Shots</div>
+                </div>
+                <div id="grid-shots" class="asset-grid">
+                    <!-- Shots items -->
+                </div>
+            </section>
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Content Creation Machine V2. Powered by Antigravity AI.</p>
-    </footer>
-    <script src="main.js"></script>
+    <!-- Modal for Preview -->
+    <div id="previewOverlay" class="preview-overlay" onclick="closePreview()">
+        <div class="preview-modal" onclick="event.stopPropagation()">
+            <div id="previewContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,5 @@
+2026-04-10 12:40:24,331 - AirtableSync - ERROR - JSON file not found: 01-Discovery/Trends/signals_file.json
+2026-04-10 12:42:24,595 - AirtableSync - ERROR - JSON file not found: signals_forex_trading_ai_automation_20260410_1239.json
+2026-04-10 12:43:04,370 - AirtableSync - INFO - Connecting to Airtable base: appTlYvHz7MOaLdz2
+2026-04-10 12:43:10,860 - AirtableSync - INFO - Uploaded batch of 10 records.
+2026-04-10 12:43:10,860 - AirtableSync - INFO - Sync Complete. Added: 10, Skipped: 0
